@@ -6,5 +6,5 @@ Stack:
 - Tailwind
 - GSAP
 
--Installs Sanity and import types from previously created Sanity repo.
-
+- Installs Sanity and import types from previously created Sanity repo.
+- Test sanity queries
