@@ -5,4 +5,6 @@ Stack:
 - NextJS
 - Tailwind
 - GSAP
--
+
+-Installs Sanity and import types from previously created Sanity repo.
+
