@@ -8,3 +8,6 @@ Stack:
 
 - Installs Sanity and import types from previously created Sanity repo.
 - Test sanity queries
+- Continue with Sanity queries and types improvement
+- Adds new post page
+- Basic UI elements
