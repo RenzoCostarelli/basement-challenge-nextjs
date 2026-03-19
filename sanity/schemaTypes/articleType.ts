@@ -11,11 +11,6 @@ export const articleType = defineType({
       type: "string",
     }),
     defineField({
-      name: "author",
-      title: "Author",
-      type: "string",
-    }),
-    defineField({
       name: "slug",
       type: "slug",
       options: {
@@ -24,10 +19,20 @@ export const articleType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "author",
+      title: "Author",
+      type: "string",
+    }),
+    defineField({
       name: "category",
       title: "Category",
       type: "array",
       of: [{ type: "reference", to: [{ type: "articleCategory" }] }],
+    }),
+    defineField({
+      name: "shortText",
+      title: "Short Text",
+      type: "string",
     }),
     defineField({
       name: "subheading",

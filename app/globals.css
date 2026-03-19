@@ -5,6 +5,8 @@
   --foreground: #171717;
   --basement-white: #e6e6e6;
   --basement-orange: #ff4d00;
+  --basement-light-gray: #c4c4c4;
+  --basement-dark-gray: #2e2e2e;
   --basement-gray: #666666;
   --font-geist-sans: "Geist Sans", sans-serif;
   --font-geist-mono: "Geist Mono", monospace;
@@ -16,6 +18,8 @@
   --color-basement-white: var(--basement-white);
   --color-basement-orange: var(--basement-orange);
   --color-basement-gray: var(--basement-gray);
+  --color-basement-dark-gray: var(--basement-dark-gray);
+  --color-basement-light-gray: var(--basement-light-gray);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -32,7 +36,7 @@
   padding-inline: calc(var(--spacing) * 5);
   @variant md {
     width: 100%;
-    padding-inline: calc(var(--spacing) * 30);
+    padding-inline: calc(var(--spacing) * 20);
   }
 }
 

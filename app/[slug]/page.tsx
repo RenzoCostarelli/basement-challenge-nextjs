@@ -1,8 +1,9 @@
+import ArticleLabels from "@/components/ArticleCategoryLabels";
 import { formatDate } from "@/lib/date";
 import { client } from "@/sanity/lib/client";
 import { sanityFetch } from "@/sanity/lib/live";
 import { getPost } from "@/sanity/lib/queries";
-import { Article, Category } from "@/types/sanity";
+import { Article } from "@/types/sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
@@ -17,7 +18,7 @@ export default async function PostPage({
   const { data } = await sanityFetch({ query: getPost, params: { slug } });
 
   return (
-    <div className="pt-32">
+    <main className="pt-32">
       <div className="container mx-auto">
         <div>← GO BACK</div>
         <div className="grid grid-cols-2">
@@ -36,9 +37,7 @@ export default async function PostPage({
               <div className="col-start-2">{data.author}</div>
             </div>
             <div>
-              {data.category.map((cate: Category) => (
-                <span key={cate._id}>{cate.name}</span>
-              ))}
+              {data.category && <ArticleLabels categories={data.category!} />}
             </div>
           </div>
         </div>
@@ -50,11 +49,11 @@ export default async function PostPage({
         alt={`${data.title} image`}
         className="w-full h-full object-cover"
       />
-      <div className="container mx-auto">
+      <article className="container mx-auto">
         <div>
           <PortableText value={data.content} />
         </div>
-      </div>
+      </article>
 
       {/* Related ARticles */}
 
@@ -86,6 +85,6 @@ export default async function PostPage({
           </div>
         </div>
       )}
-    </div>
+    </main>
   );
 }
