@@ -46,7 +46,12 @@ export default function FeaturedArticleCard({
               {article.shortText}
             </p>
           )}
-          <Button variant="secondary" className="w-max mt-6" size="sm">
+          <Button
+            variant="secondary"
+            href={`/${article.slug.current}`}
+            className="w-max mt-6"
+            appearance="accent"
+          >
             READ FULL BLOG POST
           </Button>
         </div>

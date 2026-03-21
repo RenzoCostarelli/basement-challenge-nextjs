@@ -43,7 +43,7 @@ export default function ArticleCard({ article, showImage }: ArticleCardProps) {
           )}
         </div>
 
-        <Button variant="secondary" size="sm">
+        <Button variant="secondary" appearance="light">
           Read more
         </Button>
       </div>
