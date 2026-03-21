@@ -1,60 +1,107 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ButtonHTMLAttributes, forwardRef } from "react";
+import Link from "next/link";
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, forwardRef } from "react";
 
-export type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "ghost"
-  | "outline"
-  | "subtle";
+export type ButtonVariant = "primary" | "secondary";
+export type ButtonAppearance = "dark" | "light" | "muted" | "accent";
 
-export type ButtonSize = "sm" | "md" | "lg";
-
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface BaseProps {
   variant?: ButtonVariant;
-  size?: ButtonSize;
+  appearance?: ButtonAppearance;
+  className?: string;
+  children?: React.ReactNode;
 }
 
+type ButtonAsButton = BaseProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    href?: undefined;
+  };
+
+type ButtonAsLink = BaseProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string;
+  };
+
+export type ButtonProps = ButtonAsButton | ButtonAsLink;
+
 const baseStyles =
-  "relative whitespace-nowrap overflow-hidden inline-flex items-center justify-center rounded-lg transition-all font-mono duration-200 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+  "relative whitespace-nowrap overflow-hidden inline-flex items-center justify-center transition-all font-mono duration-200 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
-const variants: Record<ButtonVariant, string> = {
-  primary: "bg-black text-white",
-  secondary: "bg-basement-orange text-black font-semibold px-2 py-1",
-  ghost: "bg-transparent text-white hover:bg-white/10",
-  outline: "border border-white/20 text-white hover:bg-white/10",
-
-  subtle: "bg-white/10 text-white hover:bg-white/20",
+const variantStyles: Record<ButtonVariant, string> = {
+  primary: "h-12 px-8 text-base rounded-lg",
+  secondary: "py-1 px-2 text-sm font-medium rounded-sm",
 };
 
-const sizes: Record<ButtonSize, string> = {
-  sm: "h-8 text-sm",
-  md: "py-2 px-8 text-base",
-  lg: "h-12 px-8 text-lg",
+const appearanceStyles: Record<ButtonAppearance, string> = {
+  dark: "bg-black text-white hover:bg-neutral-900",
+  light: "bg-basement-white text-black hover:bg-neutral-200",
+  muted: "bg-basement-light-gray text-black hover:bg-neutral-500",
+  accent: "bg-basement-orange text-black hover:bg-orange-400",
 };
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    { className, variant = "primary", size = "md", children, ...props },
-    ref,
-  ) => {
+export const Button = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  ButtonProps
+>((props, ref) => {
+  const {
+    className,
+    variant = "primary",
+    appearance = "dark",
+    children,
+  } = props;
+
+  const classes = cn(
+    baseStyles,
+    variantStyles[variant],
+    appearanceStyles[appearance],
+    className,
+  );
+
+  const content = (
+    <>
+      <span className="relative uppercase leading-none">{children}</span>
+
+      {variant === "primary" && (
+        <div className="absolute w-full h-full inset-0 translate-y-11">
+          <div className="bg-white rounded-full w-[50%] h-full mx-auto blur-2xl opacity-75" />
+        </div>
+      )}
+    </>
+  );
+
+  if ("href" in props) {
+    const {
+      href,
+      className: _className,
+      ...anchorProps
+    } = props as ButtonAsLink;
+
     return (
-      <button
-        ref={ref}
-        className={cn(baseStyles, variants[variant], sizes[size], className)}
-        {...props}
+      <Link
+        ref={ref as React.Ref<HTMLAnchorElement>}
+        href={href}
+        className={classes}
+        {...anchorProps}
       >
-        <span className="relative uppercase leading-none">{children}</span>
-        {variant === "primary" && (
-          <div className="absolute w-full h-full inset-0 translate-y-11">
-            <div className="bg-white rounded-full w-[50%] h-full mx-auto blur-2xl opacity-75"></div>
-          </div>
-        )}
-      </button>
+        {content}
+      </Link>
     );
-  },
-);
+  }
+
+  const buttonProps = props as ButtonAsButton;
+
+  return (
+    <button
+      ref={ref as React.Ref<HTMLButtonElement>}
+      className={classes}
+      type="button"
+      {...buttonProps}
+    >
+      {content}
+    </button>
+  );
+});
 
 Button.displayName = "Button";
