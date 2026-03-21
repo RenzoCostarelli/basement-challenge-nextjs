@@ -91,9 +91,7 @@ export default function Navbar({ navBarConfig }: NavbarProps) {
             </ul>
           </nav>
           <div ref={ctaRef}>
-            <Button variant="primary" size="md">
-              {cta?.label}
-            </Button>
+            <Button variant="primary">{cta?.label}</Button>
           </div>
         </div>
       </div>
