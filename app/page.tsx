@@ -13,8 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
   if (!homeData) {
     return {
-      title: "Home",
-      description: "Welcome to our site",
+      title: "Home Page",
+      description: "No metadata",
     };
   }
 

@@ -13,7 +13,7 @@ export default function FeaturedArticleCard({
 }: ArticleCardProps) {
   return (
     <div>
-      <div className="grid font-sans md:grid-cols-12 grid-cols-1 bg-transparent backdrop-blur-2xl border border-basement-gray gap-4 w-full rounded-2xl overflow-hidden p-3 lg:w-[clamp(300px,48vw,900px)] mx-auto">
+      <div className="grid font-sans md:grid-cols-12 grid-cols-1 bg-transparent backdrop-blur-2xl border border-basement-gray gap-4 w-full rounded-2xl overflow-hidden p-3 lg:w-[clamp(300px,58vw,900px)] mx-auto">
         {article.image && showImage && (
           <div className="w-full h-full bg-gray-200 rounded-sm col-span-7 overflow-hidden">
             {article.thumbnail && (
@@ -33,11 +33,11 @@ export default function FeaturedArticleCard({
               {formatDate(article.publishDate)}
             </div>
           )}
-          <h3 className="text-2xl font-semibold text-basement-white text-balance leading-none">
+          <h3 className="text-f-h2-mobile md:text-f-h2 font-semibold text-basement-white text-balance leading-none">
             {article.title && toPlainText(article.title)}
           </h3>
           {article.category && (
-            <div className="text-xs">
+            <div className="text-f-p">
               <ArticleLabels categories={article.category} />
             </div>
           )}

@@ -9,6 +9,7 @@ import { Metadata } from "next";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
+import { PortableTextBlock, toPlainText } from "@portabletext/react";
 const builder = imageUrlBuilder(client);
 
 export async function generateMetadata({
@@ -139,7 +140,11 @@ export default async function PostPage({
                     />
                   </div>
                 )}
-                <h3 className="text-xl font-semibold">{article.title}</h3>
+                {article.title && (
+                  <h3 className="text-xl font-semibold">
+                    {toPlainText(article.title)}
+                  </h3>
+                )}
                 <p>{article.slug.current}</p>
               </div>
             ))}

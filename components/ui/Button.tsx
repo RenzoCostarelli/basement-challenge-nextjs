@@ -18,7 +18,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const baseStyles =
-  "relative overflow-hidden inline-flex items-center justify-center rounded-lg transition-all font-mono duration-200 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+  "relative whitespace-nowrap overflow-hidden inline-flex items-center justify-center rounded-lg transition-all font-mono duration-200 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
 const variants: Record<ButtonVariant, string> = {
   primary: "bg-black text-white",
@@ -31,7 +31,7 @@ const variants: Record<ButtonVariant, string> = {
 
 const sizes: Record<ButtonSize, string> = {
   sm: "h-8 text-sm",
-  md: "py-3 px-8 text-base",
+  md: "py-2 px-8 text-base",
   lg: "h-12 px-8 text-lg",
 };
 

@@ -19,7 +19,7 @@ function Label({
     <div
       className={cn(
         variants[variant],
-        "text-basement-light-gray font-semibold text-sm",
+        "text-basement-light-gray font-semibold",
       )}
     >
       {category}
