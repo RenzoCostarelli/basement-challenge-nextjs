@@ -12,7 +12,7 @@ export interface Category {
 export interface Article {
   _id: string;
   _type: "article";
-  title?: string;
+  title?: PortableTextBlock[];
   author?: string;
   shortText?: string;
   slug: {
@@ -22,6 +22,7 @@ export interface Article {
   category?: Category[];
   subheading?: PortableTextBlock[];
   publishDate?: string;
+  thumbnail?: SanityImageSource;
   image?: SanityImageSource;
   content?: PortableTextBlock[];
   featured?: boolean;

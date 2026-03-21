@@ -23,7 +23,8 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
         width={1300}
         height={500}
         alt={title}
-        className="w-full h-full object-cover object-top absolute inset-0 translate-y-1/3"
+        aria-hidden="true"
+        className="w-full h-full object-cover object-top absolute inset-0 translate-y-[40svh]"
       />
       <div className="container mx-auto relative">
         <h1 className="text-basement-white font-semibold w-[78%] text-[clamp(3.4rem,2.5vw,calc(99vw-1rem))] leading-none mb-[32svh]">

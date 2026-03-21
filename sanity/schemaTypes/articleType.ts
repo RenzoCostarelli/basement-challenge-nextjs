@@ -8,7 +8,18 @@ export const articleType = defineType({
     defineField({
       name: "title",
       title: "Title",
-      type: "string",
+      type: "array",
+      of: [
+        {
+          type: "block",
+          styles: [{ title: "H1", value: "h1" }],
+          lists: [],
+          marks: {
+            decorators: [],
+            annotations: [],
+          },
+        },
+      ],
     }),
     defineField({
       name: "slug",
@@ -44,6 +55,10 @@ export const articleType = defineType({
       name: "publishDate",
       title: "Publish Date",
       type: "date",
+    }),
+    defineField({
+      name: "thumbnail",
+      type: "image",
     }),
     defineField({
       name: "image",

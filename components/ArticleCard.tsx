@@ -5,6 +5,7 @@ import Link from "next/link";
 import ArticleCategoryLabels from "./ArticleCategoryLabels";
 import { formatDate } from "@/lib/date";
 import { Button } from "./ui/Button";
+import { toPlainText } from "@portabletext/react";
 
 export default function ArticleCard({ article, showImage }: ArticleCardProps) {
   return (
@@ -14,7 +15,7 @@ export default function ArticleCard({ article, showImage }: ArticleCardProps) {
       className="border p-4 rounded-lg border-white bg-[#FCFCFC40] flex flex-col"
     >
       {showImage && article.image && (
-        <div className="relative w-full h-32">
+        <div className="relative w-full h-32 rounded-sm overflow-hidden">
           <Image
             src={builder.image(article.image).url()}
             width={1300}
@@ -24,10 +25,16 @@ export default function ArticleCard({ article, showImage }: ArticleCardProps) {
           />
         </div>
       )}
-      <div className="flex-1 justify-between flex flex-col items-start relative h-full space-y-14">
-        <div>
-          {article.publishDate && <div>{formatDate(article.publishDate)}</div>}
-          <h3 className="text-xl font-semibold">{article.title}</h3>
+      <div className="flex-1 justify-between flex flex-col items-start relative h-full space-y-14 font-sans">
+        <div className="pt-6 space-y-2">
+          {article.publishDate && (
+            <div className="text-xs">{formatDate(article.publishDate)}</div>
+          )}
+          {article.title && (
+            <h3 className="text-lg font-semibold text-balance leading-none">
+              {toPlainText(article.title)}
+            </h3>
+          )}
           {article.category && (
             <ArticleCategoryLabels
               categories={article.category}

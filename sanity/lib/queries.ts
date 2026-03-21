@@ -13,7 +13,8 @@ export const getPostsData = defineQuery(`
   "featured": *[_type == "article" && featured == true && defined(slug.current)][0]{
     _id, 
     title, 
-    slug, 
+    slug,
+    thumbnail, 
     image, 
     publishDate,  
     category[]->{
