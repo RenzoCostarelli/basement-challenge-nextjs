@@ -33,6 +33,11 @@ export const getPostsData = defineQuery(`
     name,
     slug
   }, featured
+  },
+    "categories": *[_type == "articleCategory"] | order(name asc){
+    _id,
+    name,
+    slug
   }
 }
 `);

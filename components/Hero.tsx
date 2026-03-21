@@ -51,7 +51,7 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
         {
           y: 100,
           opacity: 0,
-          skewX: 10,
+          skewX: -10,
           stagger: 0.05,
           duration: 1.5,
           ease: "power4.out",

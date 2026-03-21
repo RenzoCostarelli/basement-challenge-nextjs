@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { builder } from "@/lib/image-builder";
 import { client } from "@/sanity/lib/client";
 import { getHomeData, getPostsData } from "@/sanity/lib/queries";
-import { Article } from "@/types/sanity";
+import { Article, Category } from "@/types/sanity";
 import { Metadata } from "next";
 import { PortableText } from "next-sanity";
 
@@ -67,9 +67,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const homeData = await client.fetch(getHomeData);
-  const { featured, articles } = await client.fetch(getPostsData);
+  const { featured, articles, categories } = await client.fetch(getPostsData);
   const { hero, articlesSection } = homeData;
-
   return (
     <main>
       <Hero title={hero.title} image={hero.image} featuredArticle={featured} />
@@ -80,11 +79,18 @@ export default async function Home() {
           </h2>
           <div>
             {/* Filters */}
-            <div className="flex gap-4 items-center mb-14 text-xs">
+            <div className="flex gap-4 items-center mb-14 text-f-t">
               <div>ALL POSTS</div>
-              <div>ALL POSTS</div>
-              <div>ALL POSTS</div>
-              <div>ALL POSTS</div>
+              {categories.map((category: Category) => (
+                <Button
+                  key={category._id}
+                  variant="secondary"
+                  appearance="light"
+                  className="text-basement-gray"
+                >
+                  {category.name}
+                </Button>
+              ))}
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

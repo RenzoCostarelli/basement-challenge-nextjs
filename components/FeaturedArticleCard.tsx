@@ -1,11 +1,10 @@
 import { formatDate } from "@/lib/date";
 import { builder } from "@/lib/image-builder";
 import { ArticleCardProps } from "@/types/articleCard";
+import { toPlainText } from "@portabletext/react";
 import Image from "next/image";
-import Link from "next/link";
 import ArticleLabels from "./ArticleCategoryLabels";
 import { Button } from "./ui/Button";
-import { toPlainText } from "@portabletext/react";
 
 export default function FeaturedArticleCard({
   article,
@@ -13,7 +12,7 @@ export default function FeaturedArticleCard({
 }: ArticleCardProps) {
   return (
     <div>
-      <div className="grid font-sans md:grid-cols-12 grid-cols-1 bg-transparent backdrop-blur-2xl border border-basement-gray gap-4 w-full rounded-2xl overflow-hidden p-3 lg:w-[clamp(300px,58vw,900px)] mx-auto">
+      <div className="grid font-sans md:grid-cols-12 grid-cols-1 bg-transparent backdrop-blur-2xl shadow-[-1px_-1px_0.5px_0px_rgba(255,255,255,0.25),1px_1px_0.5px_0px_rgba(255,255,255,0.25)] gap-4 w-full rounded-2xl overflow-hidden p-3 lg:w-[clamp(300px,58vw,900px)] mx-auto">
         {article.image && showImage && (
           <div className="w-full h-full bg-gray-200 rounded-sm col-span-7 overflow-hidden">
             {article.thumbnail && (

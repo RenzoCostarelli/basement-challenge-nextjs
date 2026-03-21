@@ -30,7 +30,7 @@ const baseStyles =
   "relative whitespace-nowrap overflow-hidden inline-flex items-center justify-center transition-all font-mono duration-200 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: "h-12 px-8 text-base rounded-lg",
+  primary: "py-2 px-8 text-sm leading-[140%] rounded-lg",
   secondary: "py-1 px-2 text-sm font-medium rounded-sm",
 };
 
@@ -61,7 +61,7 @@ export const Button = forwardRef<
 
   const content = (
     <>
-      <span className="relative uppercase leading-none">{children}</span>
+      <span className="relative uppercase">{children}</span>
 
       {variant === "primary" && (
         <div className="absolute w-full h-full inset-0 translate-y-11">

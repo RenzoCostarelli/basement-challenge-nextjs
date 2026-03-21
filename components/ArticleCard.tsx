@@ -1,19 +1,14 @@
+import { formatDate } from "@/lib/date";
 import { builder } from "@/lib/image-builder";
 import { ArticleCardProps } from "@/types/articleCard";
-import Image from "next/image";
-import Link from "next/link";
-import ArticleCategoryLabels from "./ArticleCategoryLabels";
-import { formatDate } from "@/lib/date";
-import { Button } from "./ui/Button";
 import { toPlainText } from "@portabletext/react";
+import Image from "next/image";
+import ArticleCategoryLabels from "./ArticleCategoryLabels";
+import { Button } from "./ui/Button";
 
 export default function ArticleCard({ article, showImage }: ArticleCardProps) {
   return (
-    <Link
-      href={`/${article.slug.current}`}
-      key={article._id}
-      className="border p-4 rounded-lg border-white bg-[#FCFCFC40] flex flex-col"
-    >
+    <div className="p-4 rounded-lg shadow-[-1px_-1px_0.5px_0px_rgba(255,255,255,1),1px_1px_0.5px_0px_rgba(255,255,255,1)] bg-[#FCFCFC40] flex flex-col">
       {showImage && article.image && (
         <div className="relative w-full h-32 rounded-sm overflow-hidden">
           <Image
@@ -43,10 +38,14 @@ export default function ArticleCard({ article, showImage }: ArticleCardProps) {
           )}
         </div>
 
-        <Button variant="secondary" appearance="light">
+        <Button
+          variant="secondary"
+          appearance="light"
+          href={`/${article.slug.current}`}
+        >
           Read more
         </Button>
       </div>
-    </Link>
+    </div>
   );
 }
