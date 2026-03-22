@@ -18,7 +18,7 @@ export default function ArticlesSection({
   articlesSectionConfig,
 }: ArticlesSectionProps) {
   return (
-    <section className="bg-basement-white py-14 relative text-black">
+    <section className="bg-basement-white pt-4 md:py-14 relative text-black">
       <div className="container mx-auto">
         <div className="text-f-h1-mobile md:text-f-h1 font-sans font-semibold mb-32">
           <PortableText value={articlesSectionConfig.title} />

@@ -88,8 +88,8 @@ export default async function PostPage({
         <nav className="w-full text-left border-b border-basement-grey pb-3 mb-15">
           <GoBackButton />
         </nav>
-        <div className="grid grid-cols-2">
-          <div className="text-5xl font-semibold text-pretty">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-24 md:gap-0">
+          <div className="text-f-h1-mobile md:text-f-h2 font-semibold text-pretty">
             <PortableText value={post.title} />
           </div>
           <div>
@@ -98,14 +98,19 @@ export default async function PostPage({
         </div>
 
         <div className="grid grid-cols-2">
-          <div className="col-start-2 flex items-center font-sans justify-between text-basement-white text-f-p mt-36">
-            <div className="flex items-center gap-2 ">
-              <div className="col-start-2">{formatDate(post.publishDate)}</div>
+          <div className="md:col-start-2 flex items-center font-sans justify-between text-basement-white text-f-p mt-36">
+            <div className="flex items-center gap-2">
+              <div className="md:col-start-2 whitespace-nowrap">
+                {formatDate(post.publishDate)}
+              </div>
               <div className="w-1 h-1 bg-basement-grey"></div>
-              <div className="col-start-2">{post.author}</div>
+              <div className="md:col-start-2 whitespace-nowrap">
+                {post.author}
+              </div>
             </div>
-
-            {post.category && <ArticleLabels categories={post.category!} />}
+            <div className="md:block hidden">
+              {post.category && <ArticleLabels categories={post.category!} />}
+            </div>
           </div>
         </div>
       </header>
@@ -118,7 +123,7 @@ export default async function PostPage({
           className="w-full h-full object-cover"
         />
 
-        <div className="px-52 py-36 pb-48">
+        <div className="md:px-52 py-36 pb-48">
           <PortableText value={post.content} />
         </div>
       </article>
@@ -128,7 +133,7 @@ export default async function PostPage({
 
       {/* Related */}
       {post.relatedArticles && (
-        <div className="pl-22 pr-10 py-16 flex gap-8">
+        <div className="md:pl-22 md:pr-10 py-16 md:flex gap-8">
           <h2 className="text-f-h2 font-sans">Related Posts</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {post.relatedArticles.map((article: Article) => (

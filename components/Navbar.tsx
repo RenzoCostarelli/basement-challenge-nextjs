@@ -88,7 +88,7 @@ export default function Navbar({ navBarConfig }: NavbarProps) {
             </Link>
           )}
           <nav ref={navRef}>
-            <ul className="flex gap-6 whitespace-nowrap" tabIndex={0}>
+            <ul className="gap-6 whitespace-nowrap md:flex hidden" tabIndex={0}>
               {navigationItems?.map((item, index) => (
                 <li key={index}>
                   {item.href && item.label && (
