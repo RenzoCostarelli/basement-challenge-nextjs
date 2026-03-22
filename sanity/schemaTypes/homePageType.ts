@@ -1,34 +1,34 @@
-import {defineType, defineField} from 'sanity'
+import { defineType, defineField } from "sanity";
 
 export const homePageType = defineType({
-  name: 'homePage',
-  title: 'Home Page',
-  type: 'document',
+  name: "homePage",
+  title: "Home Page",
+  type: "document",
   fields: [
     defineField({
-      name: 'SEOtitle',
-      title: 'SEO Title',
-      type: 'string',
+      name: "SEOtitle",
+      title: "SEO Title",
+      type: "string",
     }),
     defineField({
-      name: 'SEOdescription',
-      title: 'SEO Description',
-      type: 'string',
+      name: "SEOdescription",
+      title: "SEO Description",
+      type: "string",
     }),
     defineField({
-      name: 'SEOimage',
-      title: 'SEO Image',
-      type: 'image',
+      name: "SEOimage",
+      title: "SEO Image",
+      type: "image",
     }),
     defineField({
-      name: 'hero',
-      title: 'Hero Section',
-      type: 'hero',
+      name: "hero",
+      title: "Hero Section",
+      type: "hero",
     }),
     defineField({
-      name: 'articlesSection',
-      title: 'Articles Section',
-      type: 'articlesSection',
+      name: "articlesSectionConfig",
+      title: "Articles Section",
+      type: "articlesSectionConfig",
     }),
   ],
-})
+});

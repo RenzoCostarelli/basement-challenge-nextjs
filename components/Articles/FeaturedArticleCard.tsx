@@ -4,7 +4,7 @@ import { ArticleCardProps } from "@/types/articleCard";
 import { toPlainText } from "@portabletext/react";
 import Image from "next/image";
 import ArticleLabels from "./ArticleCategoryLabels";
-import { Button } from "./ui/Button";
+import { Button } from "../ui/Button";
 
 export default function FeaturedArticleCard({
   article,
@@ -14,7 +14,7 @@ export default function FeaturedArticleCard({
     <div>
       <div className="grid font-sans md:grid-cols-12 grid-cols-1 bg-transparent backdrop-blur-2xl shadow-[-1px_-1px_0.5px_0px_rgba(255,255,255,0.25),1px_1px_0.5px_0px_rgba(255,255,255,0.25)] gap-4 w-full rounded-2xl overflow-hidden p-3 lg:w-[clamp(300px,58vw,900px)] mx-auto">
         {article.image && showImage && (
-          <div className="w-full h-full bg-gray-200 rounded-sm col-span-7 overflow-hidden">
+          <div className="w-full h-full bg-grey-200 rounded-sm col-span-7 overflow-hidden">
             {article.thumbnail && (
               <Image
                 src={builder.image(article.thumbnail).url()}
@@ -28,11 +28,11 @@ export default function FeaturedArticleCard({
         )}
         <div className="pr-4 pl-5 py-7 flex flex-col gap-2 col-span-5">
           {article.publishDate && (
-            <div className="text-xs text-basement-light-gray">
+            <div className="text-xs text-basement-light-grey">
               {formatDate(article.publishDate)}
             </div>
           )}
-          <h3 className="text-f-h2-mobile md:text-f-h2 font-semibold text-basement-white text-balance leading-none">
+          <h3 className="text-f-h2-mobile md:text-f-h2 font-semibold text-basement-white text-balance">
             {article.title && toPlainText(article.title)}
           </h3>
           {article.category && (
@@ -41,7 +41,7 @@ export default function FeaturedArticleCard({
             </div>
           )}
           {article.shortText && (
-            <p className="text-basement-light-gray text-xs">
+            <p className="text-basement-light-grey text-xs">
               {article.shortText}
             </p>
           )}

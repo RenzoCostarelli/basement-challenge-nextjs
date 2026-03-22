@@ -6,6 +6,16 @@ export const articleType = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "shortTitle",
+      title: "Short Title",
+      type: "string",
+      description: "A shorter version of the title for navigation links",
+      validation: (Rule) =>
+        Rule.max(30).warning(
+          `The short title shouldn't be more than 30 characters.`,
+        ),
+    }),
+    defineField({
       name: "title",
       title: "Title",
       type: "array",

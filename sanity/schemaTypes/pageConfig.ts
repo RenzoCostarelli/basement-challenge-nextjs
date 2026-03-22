@@ -1,14 +1,19 @@
-import {defineType, defineField} from 'sanity'
+import { defineType, defineField } from "sanity";
 
 export const pageConfig = defineType({
-  name: 'pageConfig',
-  title: 'Page Config',
-  type: 'document',
+  name: "pageConfig",
+  title: "Page Config",
+  type: "document",
   fields: [
     defineField({
-      name: 'navbar',
-      title: 'Navbar',
-      type: 'navBar',
+      name: "navbar",
+      title: "Navbar",
+      type: "navBar",
+    }),
+    defineField({
+      name: "footer",
+      title: "Footer",
+      type: "footer",
     }),
   ],
-})
+});

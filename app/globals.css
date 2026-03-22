@@ -5,11 +5,23 @@
   --foreground: #171717;
   --basement-white: #e6e6e6;
   --basement-orange: #ff4d00;
-  --basement-light-gray: #c4c4c4;
-  --basement-dark-gray: #2e2e2e;
-  --basement-gray: #666666;
+  --basement-light-grey: #c4c4c4;
+  --basement-dark-grey: #2e2e2e;
+  --basement-grey: #666666;
   --font-geist-sans: "Geist Sans", sans-serif;
   --font-geist-mono: "Geist Mono", monospace;
+}
+
+@keyframes translate-x {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-0.25rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @theme inline {
@@ -17,9 +29,9 @@
   --color-foreground: var(--foreground);
   --color-basement-white: var(--basement-white);
   --color-basement-orange: var(--basement-orange);
-  --color-basement-gray: var(--basement-gray);
-  --color-basement-dark-gray: var(--basement-dark-gray);
-  --color-basement-light-gray: var(--basement-light-gray);
+  --color-basement-grey: var(--basement-grey);
+  --color-basement-dark-grey: var(--basement-dark-grey);
+  --color-basement-light-grey: var(--basement-light-grey);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
@@ -39,11 +51,11 @@
   --text-f-h0-mobile--font-weight: 600;
 
   --text-f-h1: 4.75rem;
-  --text-f-h1--line-height: 4.25rem;
+  --text-f-h1--line-height: 4.275rem;
   --text-f-h1--letter-spacing: -0.04em;
   --text-f-h1--font-weight: 600;
 
-  --text-f-h1-mobile: 2.1875rem;
+  --text-f-h1-mobile: 2.5rem;
   --text-f-h1-mobile--line-height: 2.25rem;
   --text-f-h1-mobile--letter-spacing: -0.03em;
   --text-f-h1-mobile--font-weight: 600;
@@ -78,10 +90,15 @@
   --text-f-h4-mobile--letter-spacing: -0.02em;
   --text-f-h4-mobile--font-weight: 600;
 
+  --text-f-neutral: 1rem;
+  --text-f-neutral--line-height: 1.3rem;
+  --text-f-neutral--letter-spacing: 0em;
+  --text-f-neutral--font-weight: 500;
+
   --text-f-t: 0.875rem;
-  --text-f-t-line-height: 1rem;
-  --text-f-t-letter-spacing: -0.01em;
-  --text-f-t-font-weight: 500;
+  --text-f-t--line-height: 1rem;
+  --text-f-t--letter-spacing: -0.01em;
+  --text-f-t--font-weight: 500;
 
   --text-f-p: 0.8125rem;
   --text-f-p--line-height: 1rem;
@@ -107,6 +124,8 @@
   --spacing-23: 5.75rem;
   --spacing-38: 9.5rem;
   --spacing-61: 15.25rem;
+
+  --animate-translate-x: translate-x 0.5s ease-out;
 }
 
 @media (prefers-color-scheme: dark) {

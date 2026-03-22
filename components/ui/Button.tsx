@@ -27,7 +27,7 @@ type ButtonAsLink = BaseProps &
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const baseStyles =
-  "relative whitespace-nowrap overflow-hidden inline-flex items-center justify-center transition-all font-mono duration-200 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+  "relative group cursor-pointer whitespace-nowrap overflow-hidden inline-flex items-center justify-center transition-all font-mono duration-200 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary: "py-2 px-8 text-sm leading-[140%] rounded-lg",
@@ -35,9 +35,9 @@ const variantStyles: Record<ButtonVariant, string> = {
 };
 
 const appearanceStyles: Record<ButtonAppearance, string> = {
-  dark: "bg-black text-white hover:bg-neutral-900",
+  dark: "bg-black text-white",
   light: "bg-basement-white text-black hover:bg-neutral-200",
-  muted: "bg-basement-light-gray text-black hover:bg-neutral-500",
+  muted: "bg-basement-light-grey text-black hover:bg-neutral-500",
   accent: "bg-basement-orange text-black hover:bg-orange-400",
 };
 

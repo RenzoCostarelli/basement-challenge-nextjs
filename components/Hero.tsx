@@ -4,7 +4,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import { Article } from "@/types/sanity";
-import FeaturedArticleCard from "./FeaturedArticleCard";
+import FeaturedArticleCard from "./Articles/FeaturedArticleCard";
 import {
   PortableText,
   PortableTextBlock,
@@ -51,7 +51,8 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
         {
           y: 100,
           opacity: 0,
-          skewX: -10,
+          skewX: -5,
+          skewY: 2,
           stagger: 0.05,
           duration: 1.5,
           ease: "power4.out",
@@ -89,7 +90,7 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
       <div className="container mx-auto relative">
         {/* text-[clamp(3.4rem,2.5vw,calc(99vw-1rem))]  */}
         <div
-          className="text-basement-white font-semibold text-pretty text-f-h1-mobile md:text-f-h1 leading-none mb-[32svh]"
+          className="text-basement-white font-semibold text-pretty text-f-h1-mobile md:text-f-h1 mb-[32svh]"
           ref={titleRef}
         >
           <span className="md:block hidden">
