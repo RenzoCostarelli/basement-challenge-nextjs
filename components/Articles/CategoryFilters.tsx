@@ -8,7 +8,7 @@ function FilterButton({
   name: string;
 }) {
   return (
-    <button className="text-basement-grey hover:text-black uppercase font-mono">
+    <button className="text-basement-grey hover:text-black uppercase font-mono whitespace-nowrap">
       {name}
     </button>
   );
@@ -20,7 +20,7 @@ export default function CategoryFilters({
   categories: Category[];
 }) {
   return (
-    <div className="flex gap-10 items-center mb-14 text-f-t">
+    <div className="flex gap-10 items-center mb-14 text-f-t overflow-y-scroll">
       <FilterButton name="ALL POSTS" slug={{ current: "" }} />
       {categories.map((category: Category) => (
         <FilterButton

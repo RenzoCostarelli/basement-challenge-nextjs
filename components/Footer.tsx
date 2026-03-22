@@ -11,8 +11,8 @@ export default function Footer({ footerConfig }: FooterProps) {
 
   return (
     <footer className="bg-black text-white py-8 text-center border-t border-basement-grey">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-12 mb-4">
+      <div className="">
+        <div className="container mx-auto grid grid-cols-6 md:grid-cols-12 mb-4">
           {groups?.map((group, index) => (
             <div className="col-span-2 text-left" key={index}>
               <div>
@@ -50,17 +50,19 @@ export default function Footer({ footerConfig }: FooterProps) {
             </div>
           ))}
         </div>
-        {logo && (
-          <Image
-            src={builder.image(logo).url()}
-            width={1399}
-            height={214}
-            alt={"Basement logo"}
-            aria-hidden="true"
-            className="w-full h-auto"
-          />
-        )}
-        <div className="flex items-center justify-between text-basement-grey font-mono mt-5">
+        <div className="md:container mx-auto">
+          {logo && (
+            <Image
+              src={builder.image(logo).url()}
+              width={1399}
+              height={214}
+              alt={"Basement logo"}
+              aria-hidden="true"
+              className="w-full h-auto"
+            />
+          )}
+        </div>
+        <div className="container mx-auto flex items-center justify-between gap-18 text-[9px] md:text-f-t text-basement-grey font-mono mt-5">
           <p>{copyright}</p>
           <div className="flex items-center gap-2">
             <p className="text-nowrap">{soda}</p>

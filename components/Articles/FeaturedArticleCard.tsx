@@ -18,10 +18,10 @@ export default function FeaturedArticleCard({
             {article.thumbnail && (
               <Image
                 src={builder.image(article.thumbnail).url()}
-                width={1300}
+                width={900}
                 height={500}
                 alt={`${article.title} image`}
-                className="w-full h-full object-cover"
+                className="w-full h-28 md:h-full object-cover object-center"
               />
             )}
           </div>

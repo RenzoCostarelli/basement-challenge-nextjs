@@ -31,13 +31,15 @@ function NavigationLink({ text, href, direction }: NavigationLinkProps) {
       onMouseLeave={handleScramble}
       className={cn(
         "flex items-center gap-4 text-f-t text-basement-white",
-        direction === "next" && "flex-row-reverse",
+        direction === "next" && "md:flex-row-reverse",
       )}
     >
       <div className="bg-basement-grey rounded-sm py-1 px-2">
         {directionLabel}
       </div>
-      <div ref={textRef}>{text}</div>
+      <div ref={textRef} className="md:block hidden">
+        {text}
+      </div>
     </Link>
   );
 }
@@ -62,7 +64,7 @@ export default function ArticleNavigation({
   next,
 }: ArticleNavigationProps) {
   return (
-    <div className="px-52 flex justify-between mb-16 font-mono uppercase">
+    <div className="md:px-52 flex w-full justify-between mb-16 font-mono uppercase">
       {prev && (
         <NavigationLink
           text={prev.shortTitle || ""}

@@ -88,9 +88,8 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
         ref={imageRef}
       />
       <div className="container mx-auto relative">
-        {/* text-[clamp(3.4rem,2.5vw,calc(99vw-1rem))]  */}
         <div
-          className="text-basement-white font-semibold text-pretty text-f-h1-mobile md:text-f-h1 mb-[32svh]"
+          className="text-basement-white font-semibold text-pretty text-f-h1-mobile md:text-f-h1 mb-24 md:mb-[32svh]"
           ref={titleRef}
         >
           <span className="md:block hidden">
@@ -99,7 +98,6 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
           <span className="block md:hidden">{toPlainText(title)}</span>
         </div>
 
-        {/* Featured article card */}
         {featuredArticle && (
           <div ref={featuredContainerRef}>
             <FeaturedArticleCard article={featuredArticle} />
