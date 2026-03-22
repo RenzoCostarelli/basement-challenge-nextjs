@@ -8,12 +8,18 @@ export const articleType = defineType({
     defineField({
       name: "title",
       title: "Title",
-      type: "string",
-    }),
-    defineField({
-      name: "author",
-      title: "Author",
-      type: "string",
+      type: "array",
+      of: [
+        {
+          type: "block",
+          styles: [{ title: "H1", value: "h1" }],
+          lists: [],
+          marks: {
+            decorators: [],
+            annotations: [],
+          },
+        },
+      ],
     }),
     defineField({
       name: "slug",
@@ -24,10 +30,20 @@ export const articleType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "author",
+      title: "Author",
+      type: "string",
+    }),
+    defineField({
       name: "category",
       title: "Category",
       type: "array",
       of: [{ type: "reference", to: [{ type: "articleCategory" }] }],
+    }),
+    defineField({
+      name: "shortText",
+      title: "Short Text",
+      type: "string",
     }),
     defineField({
       name: "subheading",
@@ -39,6 +55,10 @@ export const articleType = defineType({
       name: "publishDate",
       title: "Publish Date",
       type: "date",
+    }),
+    defineField({
+      name: "thumbnail",
+      type: "image",
     }),
     defineField({
       name: "image",

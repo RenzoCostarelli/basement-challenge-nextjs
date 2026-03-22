@@ -1,17 +1,19 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import { client } from "@/sanity/lib/client";
+import { getPageConfig } from "@/sanity/lib/queries";
+import type { Metadata } from "next";
+import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { Geist, Geist_Mono } from "next/font/google";
+
+const geist = Geist({
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -19,15 +21,19 @@ export const metadata: Metadata = {
   description: "Renzo Costarelli",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { navbar } = await client.fetch(getPageConfig);
+
   return (
     <html lang="en">
-      <body className={`font-sans antialiased`}>
-        <Navbar />
+      <body
+        className={`font-sans antialiased ${geist.className} ${geistMono.className}`}
+      >
+        <Navbar navBarConfig={navbar} />
         {children}
         <Footer />
       </body>

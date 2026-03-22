@@ -5,6 +5,8 @@
   --foreground: #171717;
   --basement-white: #e6e6e6;
   --basement-orange: #ff4d00;
+  --basement-light-gray: #c4c4c4;
+  --basement-dark-gray: #2e2e2e;
   --basement-gray: #666666;
   --font-geist-sans: "Geist Sans", sans-serif;
   --font-geist-mono: "Geist Mono", monospace;
@@ -16,8 +18,95 @@
   --color-basement-white: var(--basement-white);
   --color-basement-orange: var(--basement-orange);
   --color-basement-gray: var(--basement-gray);
+  --color-basement-dark-gray: var(--basement-dark-gray);
+  --color-basement-light-gray: var(--basement-light-gray);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --text-blog: 1rem;
+  --text-blog--line-height: 1.5rem;
+  --text-blog--letter-spacing: 0em;
+  --text-blog--font-weight: 500;
+
+  --text-f-h0: 6.125rem;
+  --text-f-h0--line-height: 5.5rem;
+  --text-f-h0--letter-spacing: -0.04em;
+  --text-f-h0--font-weight: 600;
+
+  --text-f-h0-mobile: 2.875rem;
+  --text-f-h0-mobile--line-height: 2.45rem;
+  --text-f-h0-mobile--letter-spacing: -0.04em;
+  --text-f-h0-mobile--font-weight: 600;
+
+  --text-f-h1: 4.75rem;
+  --text-f-h1--line-height: 4.25rem;
+  --text-f-h1--letter-spacing: -0.04em;
+  --text-f-h1--font-weight: 600;
+
+  --text-f-h1-mobile: 2.1875rem;
+  --text-f-h1-mobile--line-height: 2.25rem;
+  --text-f-h1-mobile--letter-spacing: -0.03em;
+  --text-f-h1-mobile--font-weight: 600;
+
+  --text-f-h2: 2.375rem;
+  --text-f-h2--line-height: 2.25rem;
+  --text-f-h2--letter-spacing: -0.04em;
+  --text-f-h2--font-weight: 600;
+
+  --text-f-h2-mobile: 1.5rem;
+  --text-f-h2-mobile--line-height: 1.5rem;
+  --text-f-h2-mobile--letter-spacing: -0.03em;
+  --text-f-h2-mobile--font-weight: 600;
+
+  --text-f-h3: 1.5rem;
+  --text-f-h3--line-height: 1.5rem;
+  --text-f-h3--letter-spacing: -0.03em;
+  --text-f-h3--font-weight: 600;
+
+  --text-f-h3-mobile: 1.25rem;
+  --text-f-h3-mobile--line-height: 1.25rem;
+  --text-f-h3-mobile--letter-spacing: -0.03em;
+  --text-f-h3-mobile--font-weight: 600;
+
+  --text-f-h4: 1.25rem;
+  --text-f-h4--line-height: 1.25rem;
+  --text-f-h4--letter-spacing: -0.02em;
+  --text-f-h4--font-weight: 600;
+
+  --text-f-h4-mobile: 0.9375rem;
+  --text-f-h4-mobile--line-height: 1rem;
+  --text-f-h4-mobile--letter-spacing: -0.02em;
+  --text-f-h4-mobile--font-weight: 600;
+
+  --text-f-t: 0.875rem;
+  --text-f-t-line-height: 1rem;
+  --text-f-t-letter-spacing: -0.01em;
+  --text-f-t-font-weight: 500;
+
+  --text-f-p: 0.8125rem;
+  --text-f-p--line-height: 1rem;
+  --text-f-p--letter-spacing: 0em;
+  --text-f-p--font-weight: 600;
+
+  --text-f-p-mobile: 0.75rem;
+  --text-f-p-mobile--line-height: 1rem;
+  --text-f-p-mobile--letter-spacing: 0em;
+  --text-f-p-mobile--font-weight: 600;
+
+  /* ================= SPACING ================= */
+
+  --spacing-0\.75: 0.1875rem;
+  --spacing-1\.25: 0.3125rem;
+  --spacing-1\.75: 0.4375rem;
+  --spacing-2\.25: 0.5625rem;
+  --spacing-2\.5: 0.625rem;
+  --spacing-4\.5: 1.125rem;
+  --spacing-10\.5: 2.625rem;
+  --spacing-13: 3.25rem;
+  --spacing-18: 4.5rem;
+  --spacing-23: 5.75rem;
+  --spacing-38: 9.5rem;
+  --spacing-61: 15.25rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,7 +121,7 @@
   padding-inline: calc(var(--spacing) * 5);
   @variant md {
     width: 100%;
-    padding-inline: calc(var(--spacing) * 30);
+    padding-inline: calc(var(--spacing) * 1);
   }
 }
 

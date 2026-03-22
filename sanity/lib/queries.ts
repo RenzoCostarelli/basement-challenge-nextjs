@@ -11,23 +11,61 @@ export const getHomeData = defineQuery(`*[_type == "homePage"][0]{
 export const getPostsData = defineQuery(`
 {
   "featured": *[_type == "article" && featured == true && defined(slug.current)][0]{
-    _id, title, slug, image, publishDate, category, featured
+    _id, 
+    title, 
+    slug,
+    thumbnail, 
+    image, 
+    publishDate,  
+    category[]->{
+    _id,
+    name,
+    slug
+  }, featured, 
+  subheading, 
+  author, 
+  shortText
   },
   "articles": *[_type == "article" && !featured && defined(slug.current)][0...12]{
-    _id, title, slug, image, publishDate, category, featured
+    _id, title, slug, image, publishDate, 
+    category[]->{
+    _id,
+    name,
+    slug
+  }, featured
+  },
+    "categories": *[_type == "articleCategory"] | order(name asc){
+    _id,
+    name,
+    slug
   }
 }
 `);
 
 export const getFeaturedPost = defineQuery(`
   *[_type == "article" && featured == true && defined(slug.current)][0]{
-    _id, title, slug, image, publishDate, category, featured
+    _id, title, slug, image, publishDate,
+     category[]->{
+    _id,
+    name,
+    slug
+  }, featured
   }
 `);
 
 export const getPosts = defineQuery(`
   *[_type == "article" && !featured && defined(slug.current)][0...12]{
-    _id, title, slug, image, publishDate, category, featured, 
+    _id, 
+    title, 
+    slug, 
+    image, 
+    publishDate,
+    category[]->{
+      _id,
+      name,
+      slug
+    }, 
+    featured, 
   }
 `);
 
@@ -52,3 +90,21 @@ export const getPost = defineQuery(`
     publishDate
   }
 }`);
+
+// Page config
+
+export const getPageConfig = defineQuery(`
+  *[_type == "pageConfig"][0]{
+    navbar{
+      logo,
+      navigationItems[]{
+        label,
+        href,
+        external
+      },
+      cta{
+        label
+      }
+    }
+  }
+`);

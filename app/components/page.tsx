@@ -10,15 +10,6 @@ export default function ComponentsPage() {
       <Button variant="secondary" className="mr-2">
         Secondary
       </Button>
-      <Button variant="ghost" className="mr-2">
-        Ghost
-      </Button>
-      <Button variant="outline" className="mr-2">
-        Outline
-      </Button>
-      <Button variant="subtle" className="mr-2">
-        Subtle
-      </Button>
     </div>
   );
 }
