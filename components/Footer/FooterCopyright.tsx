@@ -21,36 +21,43 @@ export default function FooterCopyright({
   const copyRef = useRef<HTMLParagraphElement>(null);
   const sodaRef = useRef<HTMLDivElement>(null);
   useIsomorphicLayoutEffect(() => {
-    if (!copyRef.current || !sodaRef.current) return;
+    const ctx = gsap.context(() => {
+      if (!copyRef.current || !sodaRef.current) return;
 
-    const tl = gsap
-      .timeline({ paused: true })
-      .from(copyRef.current, {
-        x: -50,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power4.out",
-      })
-      .from(
-        sodaRef.current,
-        {
-          x: 50,
+      const tl = gsap
+        .timeline({ paused: true })
+        .from(copyRef.current, {
+          x: -50,
           opacity: 0,
           duration: 1.5,
           ease: "power4.out",
-        },
-        "<",
-      );
-    ScrollTrigger.create({
-      trigger: copyWrapperRef.current,
-      start: "-=350 80%",
-      animation: tl,
-    });
+        })
+        .from(
+          sodaRef.current,
+          {
+            x: 50,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power4.out",
+          },
+          "<",
+        );
+      ScrollTrigger.create({
+        trigger: copyWrapperRef.current,
+        start: "-=350 80%",
+        animation: tl,
+      });
+
+      return () => {
+        tl.revert();
+      };
+    }, copyWrapperRef);
 
     return () => {
-      tl.revert();
+      ctx.revert();
     };
   }, []);
+
   return (
     <div
       className="container mx-auto flex items-center justify-between gap-18 text-[9px] md:text-f-t text-basement-grey font-mono mt-5"

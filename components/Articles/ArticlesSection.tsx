@@ -35,59 +35,62 @@ export default function ArticlesSection({
     : articles;
 
   useIsomorphicLayoutEffect(() => {
-    if (
-      !sectionRef ||
-      !titleRef ||
-      !cardRef ||
-      !cardsWrapperRef ||
-      !loadMoreRef
-    )
-      return;
+    const ctx = gsap.context(() => {
+      if (
+        !sectionRef ||
+        !titleRef ||
+        !cardRef ||
+        !cardsWrapperRef ||
+        !loadMoreRef
+      )
+        return;
 
-    const tl = gsap.timeline({ paused: true }).from(titleRef.current, {
-      opacity: 0,
-      y: 50,
-      ease: "power4.out",
-      duration: 1,
-    });
-
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top center",
-      animation: tl,
-    });
-
-    const tl2 = gsap
-      .timeline({ paused: true })
-      .from(cardRef.current, {
+      const tl = gsap.timeline({ paused: true }).from(titleRef.current, {
         opacity: 0,
         y: 50,
         ease: "power4.out",
         duration: 1,
-        stagger: 0.2,
-      })
-      .from(
-        loadMoreRef.current,
-        {
+      });
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top center",
+        animation: tl,
+      });
+
+      const tl2 = gsap
+        .timeline({ paused: true })
+        .from(cardRef.current, {
           opacity: 0,
-          y: 20,
+          y: 50,
           ease: "power4.out",
-          duration: 0.5,
-        },
-        "-=0.5",
-      );
+          duration: 1,
+          stagger: 0.2,
+        })
+        .from(
+          loadMoreRef.current,
+          {
+            opacity: 0,
+            y: 20,
+            ease: "power4.out",
+            duration: 0.5,
+          },
+          "-=0.5",
+        );
 
-    ScrollTrigger.create({
-      trigger: cardsWrapperRef.current,
-      start: "top center",
-      animation: tl2,
-    });
+      ScrollTrigger.create({
+        trigger: cardsWrapperRef.current,
+        start: "top center",
+        animation: tl2,
+      });
+      return () => {
+        tl.reverse();
+        tl2.reverse();
+        cardRef.current = [];
+      };
+    }, sectionRef);
 
-    return () => {
-      tl.reverse();
-      tl2.reverse();
-      cardRef.current = [];
-    };
+    return () => ctx.revert();
   }, [sectionRef]);
 
   return (

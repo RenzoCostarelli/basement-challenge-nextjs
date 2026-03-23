@@ -14,24 +14,30 @@ interface FooterGroupLinksProps {
 export default function FooterGroupLinks({ groups }: FooterGroupLinksProps) {
   const groupsRef = useRef<HTMLDivElement>(null);
   useIsomorphicLayoutEffect(() => {
-    if (!groupsRef.current) return;
-    const tl = gsap
-      .timeline({ paused: true })
-      .from(groupsRef.current.querySelectorAll("[data-group]"), {
-        y: 5,
-        opacity: 0,
-        duration: 0.75,
-        stagger: 0.25,
-        filter: "blur(8px)",
-        ease: "power4.out",
-      });
+    const ctx = gsap.context(() => {
+      if (!groupsRef.current) return;
+      const tl = gsap
+        .timeline({ paused: true })
+        .from(groupsRef.current.querySelectorAll("[data-group]"), {
+          y: 5,
+          opacity: 0,
+          duration: 0.75,
+          stagger: 0.25,
+          filter: "blur(8px)",
+          ease: "power4.out",
+        });
 
-    ScrollTrigger.create({
-      trigger: groupsRef.current,
-      start: "top 80%",
-      animation: tl,
-    });
-  }, [groupsRef]);
+      ScrollTrigger.create({
+        trigger: groupsRef.current,
+        start: "top 80%",
+        animation: tl,
+      });
+    }, groupsRef);
+
+    return () => {
+      ctx.revert();
+    };
+  }, []);
   return (
     <div
       className="container mx-auto grid grid-cols-6 md:grid-cols-12 mb-4"

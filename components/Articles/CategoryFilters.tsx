@@ -41,19 +41,24 @@ export default function CategoryFilters({
   const filtersRef = useRef<HTMLDivElement>(null);
 
   useIsomorphicLayoutEffect(() => {
-    if (!filtersRef.current) return;
-    const tl = gsap.timeline({ paused: true }).from(filtersRef.current, {
-      opacity: 0,
-      y: 20,
-      ease: "power4.out",
-      duration: 0.5,
-    });
+    const ctx = gsap.context(() => {
+      if (!filtersRef.current) return;
+      const tl = gsap.timeline({ paused: true }).from(filtersRef.current, {
+        opacity: 0,
+        y: 20,
+        ease: "power4.out",
+        duration: 0.5,
+      });
 
-    ScrollTrigger.create({
-      trigger: filtersRef.current,
-      start: "top 80%",
-      animation: tl,
-    });
+      ScrollTrigger.create({
+        trigger: filtersRef.current,
+        start: "top 80%",
+        animation: tl,
+      });
+    }, filtersRef);
+    return () => {
+      ctx.revert();
+    };
   }, []);
   return (
     <div

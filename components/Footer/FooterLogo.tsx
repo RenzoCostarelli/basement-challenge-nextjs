@@ -13,19 +13,25 @@ interface FooterLogoProps {
 export default function FooterLogo({ logo }: FooterLogoProps) {
   const footerLogo = useRef<HTMLImageElement>(null);
   useIsomorphicLayoutEffect(() => {
-    if (!footerLogo.current) return;
-    const tl = gsap.timeline({ paused: true }).from(footerLogo.current, {
-      y: 100,
-      opacity: 0,
-      duration: 1.5,
-      ease: "power4.out",
-    });
+    const ctx = gsap.context(() => {
+      if (!footerLogo.current) return;
+      const tl = gsap.timeline({ paused: true }).from(footerLogo.current, {
+        y: 100,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power4.out",
+      });
 
-    ScrollTrigger.create({
-      trigger: footerLogo.current,
-      start: "-=200 80%",
-      animation: tl,
-    });
+      ScrollTrigger.create({
+        trigger: footerLogo.current,
+        start: "-=200 80%",
+        animation: tl,
+      });
+    }, footerLogo);
+
+    return () => {
+      ctx.revert();
+    };
   }, []);
   return (
     <div className="md:container mx-auto overflow-hidden">

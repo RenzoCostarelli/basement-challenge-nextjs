@@ -26,12 +26,19 @@ interface HeroProps {
 }
 
 export default function Hero({ title, image, featuredArticle }: HeroProps) {
+  const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const featuredContainerRef = useRef<HTMLDivElement>(null);
   useIsomorphicLayoutEffect(() => {
     const titleEl = titleRef.current?.querySelector("h1");
-    if (!titleEl || !imageRef.current || !featuredContainerRef.current) return;
+    if (
+      !heroRef ||
+      !titleEl ||
+      !imageRef.current ||
+      !featuredContainerRef.current
+    )
+      return;
 
     const split = new SplitText(titleEl, { type: "lines", linesClass: "line" });
 
@@ -97,7 +104,10 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
     };
   }, []);
   return (
-    <div className="relative w-full min-h-svh font-sans py-32 overflow-hidden">
+    <div
+      className="relative w-full min-h-svh font-sans py-32 overflow-hidden"
+      ref={heroRef}
+    >
       {/* Backgorund image */}
       <Image
         src={builder.image(image).url()}

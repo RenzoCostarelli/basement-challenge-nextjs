@@ -17,35 +17,41 @@ export default function RelatedArticles({
   const cardRef = useRef<HTMLDivElement[]>([]);
 
   useIsomorphicLayoutEffect(() => {
-    if (!containerRef.current || !titleRef.current) return;
-    const tl = gsap
-      .timeline({ paused: true })
-      .from(titleRef.current, {
-        opacity: 0,
-        y: 50,
-        ease: "power4.out",
-        filter: "blur(8px)",
-        duration: 1,
-      })
-      .from(
-        cardRef.current,
-        {
+    const ctx = gsap.context(() => {
+      if (!containerRef.current || !titleRef.current) return;
+      const tl = gsap
+        .timeline({ paused: true })
+        .from(titleRef.current, {
           opacity: 0,
           y: 50,
           ease: "power4.out",
           filter: "blur(8px)",
           duration: 1,
-          stagger: 0.2,
-        },
-        "<",
-      );
+        })
+        .from(
+          cardRef.current,
+          {
+            opacity: 0,
+            y: 50,
+            ease: "power4.out",
+            filter: "blur(8px)",
+            duration: 1,
+            stagger: 0.2,
+          },
+          "<",
+        );
 
-    ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: "top 80%",
-      animation: tl,
-    });
-  }, [containerRef]);
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top 80%",
+        animation: tl,
+      });
+    }, containerRef);
+
+    return () => {
+      ctx.revert();
+    };
+  }, []);
   return (
     <div
       className="md:pl-22 md:pr-10 px-5 py-16 flex md:flex-row flex-col gap-8"

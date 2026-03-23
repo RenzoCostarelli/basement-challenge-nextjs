@@ -17,3 +17,14 @@ Steps
 - Add lenis
 - Adds react three fiber
 - Creates 404 page using r3f
+
+Features
+
+- Full keyboard navigation
+- Dynamic Metadata
+- Smooth Scroll using Lenis
+- Scroll animations with gsap
+- ScrambleText gsap animation in buttons and link
+- Polymorphic Button component
+- Client Side post filtering
+- R3F 404 page experiencee
