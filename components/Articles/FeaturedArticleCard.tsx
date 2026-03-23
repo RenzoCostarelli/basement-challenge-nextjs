@@ -12,7 +12,7 @@ export default function FeaturedArticleCard({
 }: ArticleCardProps) {
   return (
     <div>
-      <div className="grid font-sans md:grid-cols-12 grid-cols-1 bg-transparent backdrop-blur-2xl shadow-[-1px_-1px_0.5px_0px_rgba(255,255,255,0.25),1px_1px_0.5px_0px_rgba(255,255,255,0.25)] gap-4 w-full rounded-2xl overflow-hidden p-3 lg:w-[clamp(300px,58vw,900px)] mx-auto">
+      <div className="grid md:grid-cols-12 grid-cols-1 group font-sans bg-transparent backdrop-blur-2xl shadow-[-1px_-1px_0.5px_0px_rgba(255,255,255,0.25),1px_1px_0.5px_0px_rgba(255,255,255,0.25)] gap-4 w-full rounded-2xl overflow-hidden p-3 lg:w-[clamp(300px,58vw,900px)] mx-auto">
         {article.image && showImage && (
           <div className="w-full h-full bg-grey-200 rounded-sm col-span-7 overflow-hidden">
             {article.thumbnail && (
@@ -21,7 +21,7 @@ export default function FeaturedArticleCard({
                 width={900}
                 height={500}
                 alt={`${article.title} image`}
-                className="w-full h-28 md:h-full object-cover object-center"
+                className="w-full h-28 md:h-full object-cover object-center group-has-[a:hover]:scale-105 transition-transform duration-500"
               />
             )}
           </div>

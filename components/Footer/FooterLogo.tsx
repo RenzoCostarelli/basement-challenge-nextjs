@@ -15,15 +15,15 @@ export default function FooterLogo({ logo }: FooterLogoProps) {
   useIsomorphicLayoutEffect(() => {
     if (!footerLogo.current) return;
     const tl = gsap.timeline({ paused: true }).from(footerLogo.current, {
-      y: 50,
+      y: 100,
       opacity: 0,
-      duration: 0.75,
+      duration: 1.5,
       ease: "power4.out",
     });
 
     ScrollTrigger.create({
       trigger: footerLogo.current,
-      start: "top 80%",
+      start: "-=200 80%",
       animation: tl,
     });
   }, []);
