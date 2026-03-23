@@ -5,7 +5,7 @@ import { Text } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-const TEXT = "404 - Page Not Found";
+const TEXT = "404";
 
 type LetterState = {
   position: THREE.Vector2;
@@ -27,8 +27,8 @@ function Letter({
 
   // 🧠 responsive scale
   const isMobile = size.width < 768;
-  const spacing = isMobile ? 0.4 : 0.6;
-  const fontSize = isMobile ? 0.4 : 0.6;
+  const spacing = isMobile ? 0.4 : 3;
+  const fontSize = isMobile ? 0.4 : 5;
 
   // 🧠 track if user has moved mouse
   const hasPointerMoved = useRef(false);
@@ -63,7 +63,7 @@ function Letter({
       const dir = state.position.clone().sub(mousePos);
       const dist = dir.length();
 
-      const interactionRadius = size.width < 768 ? 1 : 1.5;
+      const interactionRadius = size.width < 768 ? 1 : 3;
 
       if (dist < interactionRadius) {
         dir.normalize();
@@ -105,7 +105,13 @@ function Letter({
 
   return (
     <group ref={meshRef}>
-      <Text fontSize={fontSize} color="white" anchorX="center" anchorY="middle">
+      <Text
+        fontSize={fontSize}
+        fontWeight={900}
+        color="white"
+        anchorX="center"
+        anchorY="middle"
+      >
         {char === " " ? "\u00A0" : char}
       </Text>
     </group>

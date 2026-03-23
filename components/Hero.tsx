@@ -54,6 +54,14 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
           ease: "power4.out",
         },
       )
+      .to(
+        titleRef.current,
+        {
+          opacity: 1,
+          duration: 0.5,
+        },
+        "<",
+      )
       .from(
         split.lines,
         {
@@ -67,11 +75,15 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
         },
         "-=0.75",
       )
-      .from(
+      .fromTo(
         featuredContainerRef.current,
         {
           y: 150,
           opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
           duration: 1.5,
           ease: "power4.out",
         },
@@ -86,6 +98,7 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
   }, []);
   return (
     <div className="relative w-full min-h-svh font-sans py-32 overflow-hidden">
+      {/* Backgorund image */}
       <Image
         src={builder.image(image).url()}
         width={1300}
@@ -97,7 +110,7 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
       />
       <div className="container mx-auto relative">
         <div
-          className="text-basement-white font-semibold text-pretty text-f-h1-mobile md:text-f-h1 mb-24 md:mb-[32svh]"
+          className="text-basement-white font-semibold text-pretty text-f-h1-mobile md:text-f-h1 mb-24 md:mb-[32svh] opacity-0"
           ref={titleRef}
         >
           <span className="md:block hidden">
@@ -107,7 +120,7 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
         </div>
 
         {featuredArticle && (
-          <div ref={featuredContainerRef}>
+          <div ref={featuredContainerRef} className="opacity-0">
             <FeaturedArticleCard article={featuredArticle} />
           </div>
         )}
