@@ -78,12 +78,9 @@ export default function Navbar({ navBarConfig }: NavbarProps) {
 
   return (
     <div className="fixed top-2 w-full z-50 font-sans">
-      <div
-        className="container mx-auto opacity-0 overflow-hidden"
-        ref={navWrapperRef}
-      >
+      <div className="container mx-auto opacity-0" ref={navWrapperRef}>
         <div
-          className="flex justify-between pl-4 pr-2 py-2 items-center shadow-[-1px_-1px_0.5px_0px_rgba(255,255,255,0.25),1px_1px_0.5px_0px_rgba(255,255,255,0.25)] bg-[linear-gradient(175deg,#4a4a4a14,#99999924)] backdrop-blur-md rounded-[10px]"
+          className="flex justify-between overflow-hidden pl-4 pr-2 py-2 items-center shadow-[-1px_-1px_0.5px_0px_rgba(255,255,255,0.25),1px_1px_0.5px_0px_rgba(255,255,255,0.25)] bg-[linear-gradient(175deg,#4a4a4a14,#99999924)] backdrop-blur-md rounded-[10px]"
           ref={navContainerRef}
         >
           {logo && (
