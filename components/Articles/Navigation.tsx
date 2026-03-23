@@ -1,6 +1,5 @@
 "use client";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
-import useIsomorphicLayoutEffect from "@/hooks/useIsometricLayoutEffect";
+import { gsap } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useRef } from "react";
@@ -67,30 +66,8 @@ export default function ArticleNavigation({
   prev,
   next,
 }: ArticleNavigationProps) {
-  const navAreaRef = useRef<HTMLDivElement>(null);
-  useIsomorphicLayoutEffect(() => {
-    if (!navAreaRef.current) return;
-    const tl = gsap
-      .timeline({ paused: true })
-      .from(navAreaRef.current.querySelectorAll("[data-nav]"), {
-        y: 5,
-        opacity: 0,
-        duration: 0.3,
-        stagger: 0.25,
-        ease: "power1.out",
-      });
-
-    ScrollTrigger.create({
-      trigger: navAreaRef.current,
-      start: "top 80%",
-      animation: tl,
-    });
-  }, [navAreaRef]);
   return (
-    <div
-      className="md:px-52 flex w-full justify-between mb-20 md:mb-47.5 font-mono uppercase"
-      ref={navAreaRef}
-    >
+    <div className="md:px-52 flex w-full justify-between mb-20 md:mb-47.5 font-mono uppercase">
       {prev && (
         <NavigationLink
           text={prev.shortTitle || ""}

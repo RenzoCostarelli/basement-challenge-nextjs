@@ -43,7 +43,7 @@ export default function FooterCopyright({
       );
     ScrollTrigger.create({
       trigger: copyWrapperRef.current,
-      start: "-=350 center",
+      start: "-=350 80%",
       animation: tl,
     });
 

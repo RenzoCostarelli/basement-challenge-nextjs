@@ -1,8 +1,14 @@
 "use client";
 
+import { gsap } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { AnchorHTMLAttributes, ButtonHTMLAttributes, forwardRef } from "react";
+import {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  forwardRef,
+  useRef,
+} from "react";
 
 export type ButtonVariant = "primary" | "secondary";
 export type ButtonAppearance = "dark" | "light" | "muted" | "accent";
@@ -36,21 +42,34 @@ const variantStyles: Record<ButtonVariant, string> = {
 
 const appearanceStyles: Record<ButtonAppearance, string> = {
   dark: "bg-black text-white",
-  light: "bg-basement-white text-black hover:bg-neutral-200",
-  muted: "bg-basement-light-grey text-black hover:bg-neutral-500",
-  accent: "bg-basement-orange text-black hover:bg-orange-400",
+  light: "bg-basement-white text-black",
+  muted: "bg-basement-light-grey text-black",
+  accent: "bg-basement-orange text-black",
 };
 
 export const Button = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
   ButtonProps
 >((props, ref) => {
+  const labelRef = useRef<HTMLSpanElement>(null);
   const {
     className,
     variant = "primary",
     appearance = "dark",
     children,
   } = props;
+
+  const handleScramble = () => {
+    if (!labelRef.current) return;
+    gsap.to(labelRef.current, {
+      scrambleText: {
+        text: labelRef.current.textContent || "",
+        chars: "lowerCase",
+        speed: 2,
+      },
+      duration: 1,
+    });
+  };
 
   const classes = cn(
     baseStyles,
@@ -61,7 +80,13 @@ export const Button = forwardRef<
 
   const content = (
     <>
-      <span className="relative uppercase">{children}</span>
+      <span
+        className="relative uppercase"
+        ref={labelRef}
+        onMouseEnter={handleScramble}
+      >
+        {children}
+      </span>
 
       {variant === "primary" && (
         <div className="absolute w-full h-full inset-0 translate-y-11">
