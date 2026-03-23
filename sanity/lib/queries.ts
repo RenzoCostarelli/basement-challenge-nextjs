@@ -5,7 +5,7 @@ export const getHomeData = defineQuery(`*[_type == "homePage"][0]{
   SEOdescription, 
   SEOimage,
   hero,
-  articlesSection,
+  articlesSectionConfig,
 }`);
 
 export const getPostsData = defineQuery(`
@@ -70,26 +70,53 @@ export const getPosts = defineQuery(`
 `);
 
 export const getPost = defineQuery(`
-*[_type == 'article' && slug.current == $slug][0] {  
-  title,
-  subheading,
-  author,
-  image,
-  content,
-  publishDate,
-  category[]->{
-    _id,
-    name,
-    slug
-  },
-  relatedArticles[]->{
+{
+  "post": *[_type == "article" && slug.current == $slug][0] {  
     _id,
     title,
-    slug,
+    subheading,
+    author,
     image,
+    content,
+    publishDate,
+    category[]->{
+      _id,
+      name,
+      slug
+    },
+    relatedArticles[]->{
+      _id,
+      title,
+      category[]->{
+        _id,
+        name,
+        slug
+      },
+      slug,
+      image,
+      publishDate
+    }
+  },
+
+  "prev": *[
+    _type == "article" &&
+    publishDate < *[_type == "article" && slug.current == $slug][0].publishDate
+  ] | order(publishDate desc)[0] {
+    shortTitle,
+    slug,
+    publishDate
+  },
+
+  "next": *[
+    _type == "article" &&
+    publishDate > *[_type == "article" && slug.current == $slug][0].publishDate
+  ] | order(publishDate asc)[0] {
+    shortTitle,
+    slug,
     publishDate
   }
-}`);
+}
+`);
 
 // Page config
 
@@ -105,6 +132,20 @@ export const getPageConfig = defineQuery(`
       cta{
         label
       }
+    },
+    footer{
+      logo,
+      groups[] {
+        title,
+        links[] {
+          label,
+          href,
+          external
+        }
+      },
+      copyright,
+      soda,
+      sodaLogo
     }
   }
 `);

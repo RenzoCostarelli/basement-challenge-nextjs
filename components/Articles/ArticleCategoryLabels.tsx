@@ -4,7 +4,7 @@ import { Category } from "@/types/sanity";
 type Variant = "dark" | "light";
 
 const variants: Record<Variant, string> = {
-  dark: "bg-basement-dark-gray",
+  dark: "bg-basement-dark-grey",
   light: "bg-basement-white",
 };
 
@@ -16,12 +16,7 @@ function Label({
   variant: Variant;
 }) {
   return (
-    <div
-      className={cn(
-        variants[variant],
-        "text-basement-light-gray font-semibold",
-      )}
-    >
+    <div className={cn(variants[variant], "text-basement-light-grey text-f-p")}>
       {category}
     </div>
   );

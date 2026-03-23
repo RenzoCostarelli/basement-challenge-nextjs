@@ -1,14 +1,29 @@
 import { formatDate } from "@/lib/date";
 import { builder } from "@/lib/image-builder";
-import { ArticleCardProps } from "@/types/articleCard";
+import { ArticleCardProps, CardVariant } from "@/types/articleCard";
 import { toPlainText } from "@portabletext/react";
 import Image from "next/image";
 import ArticleCategoryLabels from "./ArticleCategoryLabels";
-import { Button } from "./ui/Button";
+import { Button } from "../ui/Button";
+import { cn } from "@/lib/utils";
 
-export default function ArticleCard({ article, showImage }: ArticleCardProps) {
+const baseStyles = "p-4 rounded-lg flex flex-col";
+
+const variantStyles: Record<CardVariant, string> = {
+  dark: "shadow-[0px_0px_21px_0px_rgba(0,_0,_0,_1),-1px_-1px_0.5px_0px_rgba(255,255,255,0.40),1px_1px_0.5px_0px_rgba(255,255,255,0.25)] bg-[rgba(18, 18, 18, 0.05)] ",
+  light:
+    "shadow-[-1px_-1px_0.5px_0px_rgba(255,255,255,1),1px_1px_0.5px_0px_rgba(255,255,255,1)] bg-[#FCFCFC40] ",
+};
+
+export default function ArticleCard({
+  article,
+  showImage,
+  variant = "light",
+}: ArticleCardProps) {
+  const buttonAppearance = variant === "light" ? "light" : "accent";
+
   return (
-    <div className="p-4 rounded-lg shadow-[-1px_-1px_0.5px_0px_rgba(255,255,255,1),1px_1px_0.5px_0px_rgba(255,255,255,1)] bg-[#FCFCFC40] flex flex-col">
+    <div className={cn(baseStyles, variantStyles[variant])}>
       {showImage && article.image && (
         <div className="relative w-full h-32 rounded-sm overflow-hidden">
           <Image
@@ -26,21 +41,21 @@ export default function ArticleCard({ article, showImage }: ArticleCardProps) {
             <div className="text-xs">{formatDate(article.publishDate)}</div>
           )}
           {article.title && (
-            <h3 className="text-lg font-semibold text-balance leading-none">
+            <h3 className="text-lg font-semibold text-balance">
               {toPlainText(article.title)}
             </h3>
           )}
           {article.category && (
             <ArticleCategoryLabels
               categories={article.category}
-              variant="light"
+              variant={variant}
             />
           )}
         </div>
 
         <Button
           variant="secondary"
-          appearance="light"
+          appearance={buttonAppearance}
           href={`/${article.slug.current}`}
         >
           Read more

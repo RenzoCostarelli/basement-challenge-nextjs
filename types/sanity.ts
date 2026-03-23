@@ -4,7 +4,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 export interface Category {
   _id: string;
   name: string;
-  slug?: {
+  slug: {
     current: string;
   };
 }
@@ -13,6 +13,7 @@ export interface Article {
   _id: string;
   _type: "article";
   title?: PortableTextBlock[];
+  shortTitle?: string;
   author?: string;
   shortText?: string;
   slug: {
@@ -44,6 +45,17 @@ export interface NavBar {
   cta?: {
     label?: string;
   };
+}
+
+export interface FooterType {
+  logo?: SanityImageSource;
+  groups?: {
+    title: string;
+    links: NavigationItem[];
+  }[];
+  copyright?: string;
+  soda?: string;
+  sodaLogo?: SanityImageSource;
 }
 
 export interface PageConfig {

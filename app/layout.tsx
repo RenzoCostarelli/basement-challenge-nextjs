@@ -26,7 +26,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { navbar } = await client.fetch(getPageConfig);
+  const { navbar, footer } = await client.fetch(getPageConfig);
 
   return (
     <html lang="en">
@@ -35,7 +35,7 @@ export default async function RootLayout({
       >
         <Navbar navBarConfig={navbar} />
         {children}
-        <Footer />
+        <Footer footerConfig={footer} />
       </body>
     </html>
   );
