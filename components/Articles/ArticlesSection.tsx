@@ -5,7 +5,7 @@ import { Button } from "../ui/Button";
 import ArticleCard from "./ArticleCard";
 import CategoryFilters from "./CategoryFilters";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import useIsomorphicLayoutEffect from "@/hooks/useIsometricLayoutEffect";
 
 interface ArticlesSectionProps {
@@ -26,6 +26,13 @@ export default function ArticlesSection({
   const cardRef = useRef<HTMLDivElement[]>([]);
   const cardsWrapperRef = useRef<HTMLDivElement>(null);
   const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const filteredArticles = selectedCategory
+    ? articles.filter((article) =>
+        article.category?.some((cat) => cat.slug.current === selectedCategory),
+      )
+    : articles;
 
   useIsomorphicLayoutEffect(() => {
     if (
@@ -98,13 +105,17 @@ export default function ArticlesSection({
 
         <div>
           {/* Filters */}
-          <CategoryFilters categories={categories} />
+          <CategoryFilters
+            categories={categories}
+            onSelectCategory={setSelectedCategory}
+            selectedCategory={selectedCategory}
+          />
         </div>
         <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
           ref={cardsWrapperRef}
         >
-          {articles.map((article: Article, index: number) => (
+          {filteredArticles.map((article: Article, index: number) => (
             <div
               key={article._id}
               ref={(el) => {
