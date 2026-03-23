@@ -1,8 +1,8 @@
-import ArticleNavigation from "@/components/Articles/Navigation";
+import ArticleBody from "@/components/Articles/ArticleBody";
 import ArticleCard from "@/components/Articles/ArticleCard";
-import ArticleLabels from "@/components/Articles/ArticleCategoryLabels";
-import GoBackButton from "@/components/GoBackButton";
-import { formatDate } from "@/lib/date";
+import ArticleHeader from "@/components/Articles/ArticleHeader";
+import ArticleMainImage from "@/components/Articles/ArticleMainImage";
+import ArticleNavigation from "@/components/Articles/Navigation";
 import { client } from "@/sanity/lib/client";
 import { sanityFetch } from "@/sanity/lib/live";
 import { getPost } from "@/sanity/lib/queries";
@@ -10,8 +10,6 @@ import { Article } from "@/types/sanity";
 import { toPlainText } from "@portabletext/react";
 import imageUrlBuilder from "@sanity/image-url";
 import { Metadata } from "next";
-import { PortableText } from "next-sanity";
-import Image from "next/image";
 const builder = imageUrlBuilder(client);
 
 export async function generateMetadata({
@@ -84,48 +82,10 @@ export default async function PostPage({
   const { post, next, prev } = data;
   return (
     <main className="pt-32 font-sans">
-      <header className="container mx-auto pb-6">
-        <nav className="w-full text-left border-b border-basement-grey pb-3 mb-15">
-          <GoBackButton />
-        </nav>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-24 md:gap-0">
-          <div className="text-f-h1-mobile md:text-f-h2 font-semibold text-pretty">
-            <PortableText value={post.title} />
-          </div>
-          <div>
-            <PortableText value={post.subheading} />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2">
-          <div className="md:col-start-2 flex items-center font-sans justify-between text-basement-white text-f-p mt-36">
-            <div className="flex items-center gap-2">
-              <div className="md:col-start-2 whitespace-nowrap">
-                {formatDate(post.publishDate)}
-              </div>
-              <div className="w-1 h-1 bg-basement-grey"></div>
-              <div className="md:col-start-2 whitespace-nowrap">
-                {post.author}
-              </div>
-            </div>
-            <div className="md:block hidden">
-              {post.category && <ArticleLabels categories={post.category!} />}
-            </div>
-          </div>
-        </div>
-      </header>
+      <ArticleHeader post={post} />
       <article className="container mx-auto">
-        <Image
-          src={builder.image(post.image).url()}
-          width={1300}
-          height={500}
-          alt={`${post.title} image`}
-          className="w-full h-full object-cover"
-        />
-
-        <div className="md:px-52 py-36 pb-48">
-          <PortableText value={post.content} />
-        </div>
+        <ArticleMainImage image={post.image} title={toPlainText(post.title)} />
+        <ArticleBody content={post.content} />
       </article>
       <div className="container mx-auto">
         <ArticleNavigation next={next} prev={prev} />
@@ -133,7 +93,7 @@ export default async function PostPage({
 
       {/* Related */}
       {post.relatedArticles && (
-        <div className="md:pl-22 md:pr-10 py-16 md:flex gap-8">
+        <div className="md:pl-22 md:pr-10 px-5 py-16 flex md:flex-row flex-col gap-8">
           <h2 className="text-f-h2 font-sans">Related Posts</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {post.relatedArticles.map((article: Article) => (

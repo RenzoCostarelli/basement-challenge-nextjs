@@ -10,7 +10,7 @@ import {
   PortableTextBlock,
   toPlainText,
 } from "@portabletext/react";
-import useIsomorphicLayoutEffect from "@/lib/useIsometricLayoutEffect";
+import useIsomorphicLayoutEffect from "@/hooks/useIsometricLayoutEffect";
 import { useRef } from "react";
 import { gsap, SplitText } from "@/lib/gsap";
 
@@ -39,13 +39,21 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
       .timeline({
         paused: true,
       })
-      .from(imageRef.current, {
-        y: 1000,
-        opacity: 0,
-        duration: 1.5,
-        skewZ: 10,
-        ease: "power4.out",
-      })
+      .fromTo(
+        imageRef.current,
+        {
+          y: 1000,
+          opacity: 0,
+          skewZ: 10,
+        },
+        {
+          y: "40svh",
+          opacity: 1,
+          skewZ: 0,
+          duration: 1.5,
+          ease: "power4.out",
+        },
+      )
       .from(
         split.lines,
         {
@@ -84,7 +92,7 @@ export default function Hero({ title, image, featuredArticle }: HeroProps) {
         height={500}
         alt={"Background image for hero section"}
         aria-hidden="true"
-        className="w-full h-full object-cover object-top absolute inset-0 translate-y-[40svh]"
+        className="w-full h-full object-cover object-top absolute inset-0 translate-y-[40svh] opacity-0"
         ref={imageRef}
       />
       <div className="container mx-auto relative">
