@@ -7,7 +7,7 @@ import ArticleCategoryLabels from "./ArticleCategoryLabels";
 import { Button } from "../ui/Button";
 import { cn } from "@/lib/utils";
 
-const baseStyles = "p-4 rounded-lg flex flex-col";
+const baseStyles = "p-4 rounded-lg flex flex-col flex-1";
 
 const variantStyles: Record<CardVariant, string> = {
   dark: "shadow-[0px_0px_21px_0px_rgba(0,_0,_0,_1),-1px_-1px_0.5px_0px_rgba(255,255,255,0.40),1px_1px_0.5px_0px_rgba(255,255,255,0.25)] bg-[rgba(18, 18, 18, 0.05)] ",
@@ -31,7 +31,7 @@ export default function ArticleCard({
             width={1300}
             height={500}
             alt={`${article.title} image`}
-            className="w-full h-h-27.5 md:h-34.25 object-cover transition-all duration-300 group-has-[a:hover]:scale-105"
+            className="w-full h-h-27.5 md:h-34.25 object-cover transition-all duration-500 group-has-[a:hover]:scale-105"
           />
         </div>
       )}

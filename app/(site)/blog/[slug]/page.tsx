@@ -1,12 +1,11 @@
 import ArticleBody from "@/components/Articles/ArticleBody";
-import ArticleCard from "@/components/Articles/ArticleCard";
 import ArticleHeader from "@/components/Articles/ArticleHeader";
 import ArticleMainImage from "@/components/Articles/ArticleMainImage";
 import ArticleNavigation from "@/components/Articles/Navigation";
+import RelatedArticles from "@/components/Articles/RelatedArticles";
 import { client } from "@/sanity/lib/client";
 import { sanityFetch } from "@/sanity/lib/live";
 import { getPost } from "@/sanity/lib/queries";
-import { Article } from "@/types/sanity";
 import { toPlainText } from "@portabletext/react";
 import imageUrlBuilder from "@sanity/image-url";
 import { Metadata } from "next";
@@ -93,19 +92,7 @@ export default async function PostPage({
 
       {/* Related */}
       {post.relatedArticles && (
-        <div className="md:pl-22 md:pr-10 px-5 py-16 flex md:flex-row flex-col gap-8">
-          <h2 className="text-f-h2 font-sans">Related Posts</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {post.relatedArticles.map((article: Article) => (
-              <ArticleCard
-                key={article._id}
-                article={article}
-                variant="dark"
-                showImage
-              />
-            ))}
-          </div>
-        </div>
+        <RelatedArticles relatedArticles={post.relatedArticles} />
       )}
     </main>
   );
