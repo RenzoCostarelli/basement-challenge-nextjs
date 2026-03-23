@@ -8,7 +8,8 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import useIsomorphicLayoutEffect from "@/lib/useIsometricLayoutEffect";
+import useIsomorphicLayoutEffect from "@/hooks/useIsometricLayoutEffect";
+import { usePathname } from "next/navigation";
 
 interface NavbarProps {
   navBarConfig: NavBar;
@@ -19,6 +20,8 @@ export default function Navbar({ navBarConfig }: NavbarProps) {
   const logoRef = useRef<HTMLAnchorElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const path = usePathname();
+  const isHomePage = path === "/";
 
   const { navigationItems, cta, logo } = navBarConfig;
 
@@ -30,11 +33,9 @@ export default function Navbar({ navBarConfig }: NavbarProps) {
       })
       .from(navContainerRef.current, {
         y: -100,
-        // transformOrigin: "top",
-        // scaleX: "0.1",
         duration: 1,
         ease: "power4.out",
-        delay: 1,
+        delay: isHomePage ? 1 : 0,
       })
       .from(
         [logoRef.current, navRef.current, ctaRef.current],
@@ -55,19 +56,20 @@ export default function Navbar({ navBarConfig }: NavbarProps) {
       .to(navContainerRef.current, {
         backgroundImage: "linear-gradient(175deg,#4a4a4a80,#99999990)",
       });
-
-    ScrollTrigger.create({
-      animation: scrollTl,
-      start: "center center",
-      end: "+=200",
-      scrub: true,
-    });
+    if (isHomePage) {
+      ScrollTrigger.create({
+        animation: scrollTl,
+        start: "center center",
+        end: "+=200",
+        scrub: true,
+      });
+    }
 
     return () => {
       tl.revert();
       scrollTl.revert();
     };
-  }, []);
+  }, [path]);
 
   return (
     <div className="fixed top-2 w-full z-50 font-sans">

@@ -11,3 +11,4 @@ Stack:
 - Continue with Sanity queries and types improvement
 - Adds new post page
 - Basic UI elements
+- Create portableTextComponents to style portableText elements

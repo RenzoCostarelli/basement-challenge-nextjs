@@ -47,7 +47,7 @@ export default function FeaturedArticleCard({
           )}
           <Button
             variant="secondary"
-            href={`/${article.slug.current}`}
+            href={`/blog/${article.slug.current}`}
             className="w-max mt-6"
             appearance="accent"
           >
