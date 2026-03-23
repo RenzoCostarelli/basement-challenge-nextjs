@@ -127,7 +127,7 @@ export default function ArticlesSection({
             </div>
           ))}
         </div>
-        <div className="flex justify-center mt-10 md:mt-24" ref={loadMoreRef}>
+        <div className="flex justify-center py-10 md:py-24 " ref={loadMoreRef}>
           <Button variant="primary">Load more</Button>
         </div>
       </div>
