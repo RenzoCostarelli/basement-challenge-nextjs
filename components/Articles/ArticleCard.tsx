@@ -23,15 +23,15 @@ export default function ArticleCard({
   const buttonAppearance = variant === "light" ? "light" : "accent";
 
   return (
-    <div className={cn(baseStyles, variantStyles[variant])}>
+    <div className={cn(baseStyles, variantStyles[variant], "group")}>
       {showImage && article.image && (
-        <div className="relative w-full h-32 rounded-sm overflow-hidden">
+        <div className="relative w-full h-32 rounded-sm overflow-hidden ">
           <Image
             src={builder.image(article.image).url()}
             width={1300}
             height={500}
             alt={`${article.title} image`}
-            className="w-full h-full object-cover"
+            className="w-full h-h-27.5 md:h-34.25 object-cover transition-all duration-300 group-has-[a:hover]:scale-105"
           />
         </div>
       )}
@@ -56,7 +56,7 @@ export default function ArticleCard({
         <Button
           variant="secondary"
           appearance={buttonAppearance}
-          href={`/${article.slug.current}`}
+          href={`/blog/${article.slug.current}`}
         >
           Read more
         </Button>
